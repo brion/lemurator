@@ -1,0 +1,33 @@
+//   0x08048a40 <+16>:	je     0x8048a87 <fibonacci+87>
+//   0x08048a42 <+18>:	xor    %esi,%esi
+//   0x08048a44 <+20>:	jmp    0x8048a55 <fibonacci+37>
+//   0x08048a46 <+22>:	lea    0x0(%esi),%esi
+//   0x08048a49 <+25>:	lea    0x0(%edi,%eiz,1),%edi
+//   0x08048a50 <+32>:	cmp    $0x1,%ebx
+//   0x08048a53 <+35>:	je     0x8048a78 <fibonacci+72>
+//   0x08048a55 <+37>:	lea    -0x1(%ebx),%eax
+//   0x08048a58 <+40>:	sub    $0xc,%esp
+//   0x08048a5b <+43>:	push   %eax
+//   0x08048a5c <+44>:	call   0x8048a30 <fibonacci>
+//   0x08048a61 <+49>:	add    $0x10,%esp
+//   0x08048a64 <+52>:	add    %eax,%esi
+//   0x08048a66 <+54>:	sub    $0x2,%ebx
+//   0x08048a69 <+57>:	jne    0x8048a50 <fibonacci+32>
+//   0x08048a6b <+59>:	add    $0x4,%esp
+//   0x08048a6e <+62>:	mov    %esi,%eax
+//   0x08048a70 <+64>:	pop    %ebx
+//   0x08048a71 <+65>:	pop    %esi
+//   0x08048a72 <+66>:	ret    
+//   0x08048a73 <+67>:	nop
+//   0x08048a74 <+68>:	lea    0x0(%esi,%eiz,1),%esi
+//   0x08048a78 <+72>:	add    $0x1,%esi
+//   0x08048a7b <+75>:	add    $0x4,%esp
+//   0x08048a7e <+78>:	mov    %esi,%eax
+//   0x08048a80 <+80>:	pop    %ebx
+//   0x08048a81 <+81>:	pop    %esi
+//   0x08048a82 <+82>:	ret    
+//   0x08048a83 <+83>:	xor    %esi,%esi
+//   0x08048a85 <+85>:	jmp    0x8048a6b <fibonacci+59>
+//   0x08048a87 <+87>:	mov    $0x1,%esi
+//   0x08048a8c <+92>:	jmp    0x8048a6b <fibonacci+59>
+
