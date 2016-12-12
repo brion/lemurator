@@ -1,3 +1,48 @@
+What it is
+==========
+
+Manually 'compiled' JS versions of disassembled C program, comparing perf
+against native, the same binary running under [v86](http://copy.sh/v86/)'s
+Arch Linux demo in Firefox, and the JS versions running in node.
+
+The assembly instructions are divided up at branch boundaries similarly to how
+QEMU does its dynamic translation in small translation blocks; these are then
+either made each as a separate function, or combined in a loop+switch state
+machine, or reconstructed into loops similarly to emscripten's "relooper"
+algorithm.
+
+
+Timings summary
+===============
+
+Approximate! May not be representative!
+
+Fibonacci sequence recursive test (1x fibonacci(32)):
+* x86 binary on v86: 320x slower than native
+* function-per-TB: 150x slower than native
+* loop+switch: 112x slower than native
+* relooper: 112x slower than native
+
+Fibonacci sequence linear test (1000x fibonacci(10000)):
+* x86 binary on v86: 400x slower than native
+* function-per-TB: 56x slower than native
+* loop+switch: 12x slower than native
+* relooper: 10x slower than native
+
+
+The recursive test is dominated by function call overhead -- which includes
+memory access via pushing/popping the stack -- and I'm seeing only modest
+improvements versus v86, about 2-3x faster.
+
+The linear loop test is much more amenable, with up to 40x performance gain in
+the relooped version.
+
+I can't help but feel like I'm doing something wrong in the recursive version.
+
+
+Details
+=======
+
 Fibonacci native compilation running in Parallels:
 
 [brion@fedora-25-x86 foo]$ time ./fibonacci 30
