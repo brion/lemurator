@@ -41,16 +41,22 @@ function cpu_loop() {
 }
 
 function run() {
-  var input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 32];
+  var input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 25, 30, 32, 10000];
   //var input = [5];
   for (var i = 0; i < input.length; i++) {
     var n = input[i];
     time(function() {
+      for (var i = 0; i < 1000; i++) {
+        js_fibonacci(n);
+      }
       return js_fibonacci(n);
     }, function(ret, delta) {
       console.log('.js for ' + n + ': ' + ret + ' (' + delta + 'ms)');
     });
     time(function() {
+      for (var i = 0; i < 1000; i++) {
+        emu_fibonacci(n);
+      }
       return emu_fibonacci(n);
     }, function(ret, delta) {
       console.log('emu for ' + n + ': ' + ret + ' (' + delta + 'ms)');

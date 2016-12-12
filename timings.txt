@@ -113,3 +113,19 @@ sys     0m0.130s
 
 This shows a ~400x slowdown in v86 emulator in Firefox versus native code.
 
+
+
+linear-fib-o2.js (function per TB) runs in node nicely faster:
+
+.js for 32: 2178309 (0ms)
+emu for 32: 2178309 (4ms)
+.js for 10000: Infinity (54ms)
+emu for 10000: 1242044891 (446ms)
+
+This is a ~8x speedup versus the v86 emulator, and I haven't tried relooping yet.
+
+
+linear-fib-switch.js (one function for all hot TBs, with a big switch) runs 32x faster than the v86 emulator:
+
+.js for 10000: Infinity (59ms)
+emu for 10000: 1242044891 (99ms)
