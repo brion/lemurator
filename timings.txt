@@ -84,7 +84,8 @@ emu for 32: 2178309 (1485ms)
 
 About the same as without the relooping, bummer. But we have few loops here,
 and mostly a lot of function call overhead. we also have both JS native func
-call overhead AND the x86 ABI overhead of pushing and popping.
+call overhead AND the x86 ABI overhead of pushing and popping...
+And I don't trust that function call mapping to be reliable and not explode.
 
 
 
@@ -142,3 +143,11 @@ There is a lot less overhead per run of the loop, as we increment the counter an
 check it and do a local jump but don't have to worry about pushing/popping and such.
 
 Still have to try a relooper style translation for this version.
+
+
+linear-fib-relooper.js (one function for all hot TBs, with loop & if reconstruction)
+
+.js for 10000: Infinity (57ms)
+emu for 10000: 1242044891 (80ms)
+
+Now about 40x faster than v86. Nice!

@@ -186,7 +186,7 @@ compiledBlocks[0x08048a30] = function() {
         block2: for(;;) {
         //   0x08048a55 <+37>:	lea    -0x1(%ebx),%eax
           t1 = reg_ebx|0;
-          t2 = -1;
+          t2 = 0xffffffff; // -1
           t3 = (t1 + t2)|0;
           reg_eax = t3;
         //   0x08048a58 <+40>:	sub    $0xc,%esp
@@ -201,10 +201,11 @@ compiledBlocks[0x08048a30] = function() {
           push32(0x8048a61);
           reg_eip = 0x8048a30;
 
-          // RECURSE
+          // FUNCTION CALL
           compiledBlocks[0x08048a30]();
           if (reg_eip !== 0x8048a61) {
-            throw new Error('unexpected return');
+            //throw new Error('unexpected return');
+            return;
           }
 
         //   0x08048a61 <+49>:	add    $0x10,%esp
@@ -269,7 +270,7 @@ compiledBlocks[0x08048a30] = function() {
       }
     }
     
-    throw new Error('nothing should reach this');
+    //throw new Error('nothing should reach this');
   }
 
   //   0x08048a6b <+59>:	add    $0x4,%esp
