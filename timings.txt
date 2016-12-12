@@ -64,8 +64,17 @@ emu for 32: 2178309 (1938ms)
 
 fibonacci-switch.js (all blocks wrapped into a looped switch state machine in one function):
 
-.js for 30: 832040 (12ms)
-emu for 30: 832040 (574ms)
+.js for 30: 832040 (11ms)
+emu for 30: 832040 (555ms)
 .js for 32: 2178309 (32ms)
-emu for 32: 2178309 (1526ms)
+emu for 32: 2178309 (1460ms)
+
+fibonacci-relooper.js (rewritten to use a function call and if/else):
+
+.js for 30: 832040 (12ms)
+emu for 30: 832040 (554ms)
+.js for 32: 2178309 (31ms)
+emu for 32: 2178309 (1485ms)
+
+(about the same)
 
