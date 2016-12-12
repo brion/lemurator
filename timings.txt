@@ -16,7 +16,7 @@ sys	0m0.000s
 
 
 
-Fibonacci native compilation running on Arch Linux in v86:
+Fibonacci native compilation running on Arch Linux in v86 in Firefox:
 http://copy.sh/v86/?profile=archlinux
 
 root@nyu:/# time ./fibonacci 30
@@ -33,6 +33,22 @@ native for 32: 2178309
 real    0m4.148s
 user    0m4.027s
 sys     0m0.107s
+
+
+same in Chrome:
+
+root@nyu:/# time ./fibonacci 30
+native for 30: 832040
+
+real    0m1.906s
+user    0m1.763s
+sys     0m0.143s
+root@nyu:/# time ./fibonacci 32
+native for 32: 2178309
+
+real    0m4.761s
+user    0m4.613s
+sys     0m0.143s
 
 
 
