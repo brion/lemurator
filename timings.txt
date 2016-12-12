@@ -142,8 +142,6 @@ runs 32x faster than the v86 emulator, this is much more interesting :)
 There is a lot less overhead per run of the loop, as we increment the counter and
 check it and do a local jump but don't have to worry about pushing/popping and such.
 
-Still have to try a relooper style translation for this version.
-
 
 linear-fib-relooper.js (one function for all hot TBs, with loop & if reconstruction)
 
