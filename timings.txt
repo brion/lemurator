@@ -35,6 +35,9 @@ user    0m4.027s
 sys     0m0.107s
 
 
+This shows a 320x slowdown in the v86 emulator on Firefox versus native code.
+
+
 same in Chrome:
 
 root@nyu:/# time ./fibonacci 30
@@ -77,4 +80,36 @@ emu for 30: 832040 (554ms)
 emu for 32: 2178309 (1485ms)
 
 (about the same)
+
+
+
+
+------
+
+Non-recursive, linear fibonacci sequence generator is much faster, naturally.
+Test program runs 1000 iterations of whatever is asked of it to slow it down.
+Answers will be wrong due to overflow, but the calc is what's fun.
+
+
+Native in parallels:
+
+$ time ./linear-fib 10000
+native for 10000: 1242044891
+
+real    0m0.008s
+user    0m0.007s
+sys     0m0.000s
+
+
+Arch Linux in v86 running in Firefox:
+
+# time ./linear-fib 10000
+native for 10000: 1242044891
+
+real    0m3.298s
+user    0m3.167s
+sys     0m0.130s
+
+
+This shows a ~400x slowdown in v86 emulator in Firefox versus native code.
 
