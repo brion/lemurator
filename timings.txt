@@ -64,6 +64,7 @@ emu for 30: 832040 (714ms)
 .js for 32: 2178309 (31ms)
 emu for 32: 2178309 (1938ms)
 
+This is about a 2xish speedup versus v86, not super great.
 
 fibonacci-switch.js (all blocks wrapped into a looped switch state machine in one function):
 
@@ -72,6 +73,8 @@ emu for 30: 832040 (555ms)
 .js for 32: 2178309 (32ms)
 emu for 32: 2178309 (1460ms)
 
+Slight but noticeable improvement when building a switch loop in a single function.
+
 fibonacci-relooper.js (rewritten to use a function call and if/else):
 
 .js for 30: 832040 (12ms)
@@ -79,7 +82,7 @@ emu for 30: 832040 (554ms)
 .js for 32: 2178309 (31ms)
 emu for 32: 2178309 (1485ms)
 
-(about the same)
+About the same as without the relooping, bummer. But we have few loops here, and mostly a lot of function call overhead. we also have both JS native func call overhead AND the x86 ABI overhead of pushing and popping.
 
 
 
@@ -88,7 +91,8 @@ emu for 32: 2178309 (1485ms)
 
 Non-recursive, linear fibonacci sequence generator is much faster, naturally.
 Test program runs 1000 iterations of whatever is asked of it to slow it down.
-Answers will be wrong due to overflow, but the calc is what's fun.
+Answers will be wrong due to overflow because we also ask for a really huge
+value to get the inner loop iterations up, but the calc is what's fun.
 
 
 Native in parallels:
@@ -122,10 +126,15 @@ emu for 32: 2178309 (4ms)
 .js for 10000: Infinity (54ms)
 emu for 10000: 1242044891 (446ms)
 
-This is a ~8x speedup versus the v86 emulator, and I haven't tried relooping yet.
+This is a ~8x speedup versus the v86 emulator, and I haven't tried relooping yet. Not a bad start.
 
 
-linear-fib-switch.js (one function for all hot TBs, with a big switch) runs 32x faster than the v86 emulator:
+linear-fib-switch.js (one function for all hot TBs, with a big switch):
 
 .js for 10000: Infinity (59ms)
 emu for 10000: 1242044891 (99ms)
+
+runs 32x faster than the v86 emulator, this is much more interesting :)
+There is a lot less overhead per run of the loop, as we increment the counter and check it and do a local jump but don't have to worry about pushing/popping and such.
+
+Still have to try a relooper style translation for this version.
