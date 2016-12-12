@@ -1,13 +1,11 @@
-ALL : hello fibonacci
+ALL : fibonacci linear-fib
 
 clean :
-	rm -f hello
 	rm -f fibonacci
-
-hello : hello.c
-	gcc -o hello -O2 -static hello.c
+	rm -f linear-fib
 
 fibonacci : fibonacci.c
 	gcc -o fibonacci -O2 -static fibonacci.c
 
-
+linear-fib : linear-fib.c
+	gcc -o linear-fib -O2 -static linear-fib.c
