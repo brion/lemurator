@@ -35,7 +35,7 @@ function cpu_loop() {
       //log('[done at ' + reg_eip.toString(16) + ']');
       return;
     }
-    //log('[' + (reg_eip).toString(16) + ']');
+    //log('[' + (reg_eip).toString(16) + '] ' + [reg_eax, reg_ebx, reg_ecx, reg_edx, reg_esi].join(', '));
     nextBlock();
   }
 }
@@ -177,7 +177,7 @@ compiledBlocks[0x08048b20] = function() {
   // 0x08048b20 <+32>:	cmp    $0x1,%edx
   t1 = reg_edx|0;
   t2 = 1;
-  t3 = t2 - t1;
+  t3 = t1 - t2;
   flags_zf = (t3 === 0);
   flags_sf = (t3 < 0);
   // flags_of =  ... ?
@@ -195,7 +195,7 @@ compiledBlocks[0x08048b25] = function() {
   t1 = reg_ebx | 0;
   t2 = reg_ecx | 0;
   t3 = 1;
-  t4 = (t1 + t2 + t3) | 0;
+  t4 = (t1 + t2 * t3) | 0;
   reg_eax = t4;
   // 0x08048b28 <+40>:	mov    %ecx,%ebx
   t5 = reg_ecx|0;
@@ -211,7 +211,7 @@ compiledBlocks[0x08048b25] = function() {
   // 0x08048b2f <+47>:	cmp    %esi,%edx
   t10 = reg_edx|0;
   t11 = reg_esi|0;
-  t12 = t11 - t10;
+  t12 = t10 - t11;
   flags_zf = (t12 === 0);
   // 0x08048b31 <+49>:	jne    0x8048b20 <fibonacci+32>
   if (!flags_zf) {
@@ -232,7 +232,7 @@ compiledBlocks[0x08048b2c] = function() {
   // 0x08048b2f <+47>:	cmp    %esi,%edx
   t10 = reg_edx|0;
   t11 = reg_esi|0;
-  t12 = t11 - t10;
+  t12 = t10 - t11;
   flags_zf = (t12 === 0);
   // 0x08048b31 <+49>:	jne    0x8048b20 <fibonacci+32>
   if (!flags_zf) {
