@@ -1,5 +1,5 @@
-What it is
-==========
+About
+=====
 
 Manually 'compiled' JS versions of disassembled C program, comparing perf
 against native, the same binary running under [v86](http://copy.sh/v86/)'s
